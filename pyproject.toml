@@ -1,12 +1,33 @@
 [project]
 name = "flowforge"
 version = "1.2.3"
-description = "Enforced workflow engine for AI agents"
+description = "Enforced workflow engine for AI agents — YAML-defined, CLI-driven state machine"
+readme = "README.md"
+license = {text = "MIT"}
 requires-python = ">=3.10"
+authors = [
+    {name = "lieeesson", email = "lieeesson@example.com"}
+]
+keywords = ["workflow", "state-machine", "yaml", "ai", "agent"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 dependencies = ["pyyaml"]
 
 [project.optional-dependencies]
 test = ["pytest"]
 
+[project.scripts]
+flowforge = "flowforge.cli:main"
+
 [tool.pytest.ini_options]
 testpaths = ["test_flowforge.py"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

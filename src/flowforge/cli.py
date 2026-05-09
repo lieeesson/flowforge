@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 import json
 
-import engine
+from . import engine
 
 def auto_load_workflows():
     dirs = [
@@ -38,7 +38,7 @@ def auto_load_workflows():
     for wf in all_workflows:
         if wf['source'] == 'auto' and wf['name'] not in scanned_names:
             try:
-                engine.delete_workflow(wf['name'])
+                engine.delete_workflow_by_name(wf['name'])
             except Exception:
                 pass
 
@@ -75,7 +75,7 @@ def cmd_define(args):
 
 def cmd_delete(args):
     try:
-        engine.delete_workflow(args.workflow)
+        engine.delete_workflow_by_name(args.workflow)
         print(f"Workflow '{args.workflow}' deleted.")
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
@@ -295,3 +295,13 @@ if args.command in dispatch:
 else:
     parser.print_help()
     sys.exit(1)
+
+def main():
+    args = parser.parse_args()
+    if not args.command:
+        parser.print_help()
+        sys.exit(1)
+    dispatch[args.command](args)
+
+if __name__ == "__main__":
+    main()

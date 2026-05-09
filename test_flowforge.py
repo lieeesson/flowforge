@@ -1,13 +1,10 @@
 import unittest
 import sys
 import os
-import shutil
 
-sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
-import db
-import engine
-import workflow
+from flowforge import db, engine, workflow
 
 class TestWorkflow(unittest.TestCase):
     def setUp(self):
